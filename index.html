@@ -1122,10 +1122,13 @@ fForm.addEventListener("submit", function (e) {
       fStatus.textContent = "Geschafft. Der Fahrplan ist unterwegs in Ihr Postfach. "
         + "Kommt nichts an? Bitte kurz im Spam-Ordner nachsehen.";
     } else {
-      throw new Error("abgelehnt");
+      // Klartext-Meldung von FormSubmit in die Browser-Konsole schreiben.
+      // Häufigster Fall: Die Empfängeradresse ist noch nicht freigeschaltet.
+      throw new Error(daten && daten.message ? daten.message : "abgelehnt");
     }
   })
-  .catch(function () {
+  .catch(function (fehler) {
+    if (window.console) { console.warn("Freebie-Formular:", fehler.message); }
     fKnopf.disabled = false;
     fKnopf.textContent = FKNOPF_TEXT;
     fStatus.textContent = "Das hat gerade nicht geklappt. Schreiben Sie uns kurz an "
