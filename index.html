@@ -936,13 +936,14 @@ details .body p:last-child{margin-bottom:0;}
 
       <div class="field">
         <label for="freebieMail">Ihre E-Mail-Adresse
-          <span class="hint">Mehr brauchen wir nicht – kein Name, keine Telefonnummer.</span>
+          <span class="hint">Mehr brauchen wir nicht – kein Name, keine Telefonnummer.
+            Sie bekommen den Fahrplan sofort hier auf der Seite, ohne auf eine E-Mail zu warten.</span>
         </label>
         <input type="email" id="freebieMail" name="email" autocomplete="email"
                placeholder="name@beispiel.de" required>
       </div>
 
-      <button type="submit" class="btn btn-block">Fahrplan kostenlos anfordern</button>
+      <button type="submit" class="btn btn-block">Fahrplan jetzt anzeigen</button>
 
       <!-- Rückmeldung an den Besucher -->
       <p class="form-status" id="freebieStatus" role="status" aria-live="polite"></p>
@@ -1137,7 +1138,7 @@ fForm.addEventListener("submit", function (e) {
     fForm.email.disabled = true;
     fKnopf.hidden = true;
     fDownload.hidden = false;
-    fMelden("Geschafft. Ihr Fahrplan steht unten zum Öffnen bereit.");
+    fMelden("Geschafft. Ihr Fahrplan steht unten bereit – einfach auf den Knopf klicken.");
   })
   .catch(function (fehler) {
     // Klartext-Meldung des Dienstes in die Browser-Konsole schreiben.
