@@ -1,0 +1,7 @@
+# Internes Arbeitsdokument - gehört nicht auf die öffentliche Seite
+albcateringbriefing_1.html
+
+# Bildquellen: die Fotos stecken bereits als Daten-URI in der index.html.
+# Diese Ordner werden für die Website nicht gebraucht und sparen Platz.
+bilder/
+ALB_briefkopf_logo.png
