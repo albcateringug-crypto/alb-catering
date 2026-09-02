@@ -890,11 +890,11 @@ details .body p:last-child{margin-bottom:0;}
      Versand läuft über Web3Forms (web3forms.com) - kostenlos, kein
      eigener Server nötig.
 
-     NOCH EINZUTRAGEN: der Zugangsschlüssel im Feld "access_key".
-     Den bekommen Sie kostenlos auf web3forms.com, indem Sie dort Ihre
-     E-Mail-Adresse eintragen. An genau diese Adresse gehen später alle
-     Anmeldungen. Der Schlüssel ist kein Passwort - er steht bei jedem
-     Anbieter offen im Quelltext und darf hier sichtbar sein.
+     Der Zugangsschlüssel im Feld "access_key" stammt von web3forms.com.
+     Er legt fest, an welche Adresse die Anmeldungen gehen. Der Schlüssel
+     ist kein Passwort - er steht bei diesem Verfahren offen im Quelltext
+     und darf hier sichtbar sein. Zum Ändern der Empfängeradresse auf
+     web3forms.com einen neuen Schlüssel anlegen und hier eintragen.
 
      Der Besucher bekommt den Fahrplan sofort auf der Seite zum
      Herunterladen. Es wird ihm bewusst KEINE Mail geschickt, denn
@@ -923,8 +923,8 @@ details .body p:last-child{margin-bottom:0;}
     <form class="form-card" id="freebieForm" method="POST"
           action="https://api.web3forms.com/submit" novalidate>
 
-      <!-- ZUGANGSSCHLÜSSEL VON WEB3FORMS - hier eintragen -->
-      <input type="hidden" name="access_key" value="[ZUGANGSSCHLUESSEL-HIER-EINSETZEN]">
+      <!-- Zugangsschlüssel von Web3Forms: bestimmt die Empfängeradresse -->
+      <input type="hidden" name="access_key" value="39e758cb-9684-4696-b768-7407fb12b856">
       <input type="hidden" name="subject" value="Neue Anmeldung: 4-Wochen-Fahrplan">
       <input type="hidden" name="from_name" value="ALB CATERING Website">
       <!-- Besucher ohne JavaScript landen auf der Danke-Seite mit dem Download -->
