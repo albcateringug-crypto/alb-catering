@@ -10,6 +10,11 @@ Veröffentlicht über GitHub Pages.
 - `fahrplan-familienfeier.pdf` – das Freebie „Der 4-Wochen-Fahrplan“, das Besucher
   nach Eintragen ihrer E-Mail-Adresse herunterladen können.
 - `danke.html` – Danke-Seite mit dem Download für Besucher ohne JavaScript.
+- `weihnachten.html` – Kampagnenseite für Weihnachten 2026 mit den vier
+  Weihnachtsmenüs. Von der Startseite über den grünen Streifen oben verlinkt.
+  Gerichte, Preise, Bestellschluss und Vorlaufzeiten sind noch Platzhalter.
+- `danke-anfrage.html` – Danke-Seite für das Weihnachts-Anfrageformular.
+- `bilder-web/` – verkleinerte Fotos für die Weihnachtsseite.
 
 ## Formulare
 

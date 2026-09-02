@@ -305,11 +305,33 @@ details .body p:last-child{margin-bottom:0;}
   .private-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:center;}
   .area-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:center;}
 }
+
+/* ---- Saison-Hinweis auf die Weihnachtsseite ---------------------- */
+.saison{background:#1B3A2C; border-bottom:1px solid #24503C;}
+.saison a{display:flex; align-items:center; justify-content:center; gap:10px;
+  flex-wrap:wrap; padding:12px 20px; color:#FFF; text-decoration:none;
+  font-size:.95rem; text-align:center;}
+.saison a:hover{background:#24503C;}
+.saison b{font-family:"Oswald","Arial Narrow",Arial,sans-serif; text-transform:uppercase;
+  letter-spacing:.08em; color:var(--neon); font-weight:600; font-size:.84rem;}
+.saison .pfeil{color:var(--neon); font-weight:700;}
 </style>
 </head>
 <body>
 
 <a class="skip" href="#anfrage">Direkt zum Anfrageformular</a>
+
+<!-- ===================================================================
+     SAISON-HINWEIS - fuehrt auf die Weihnachtsseite.
+     Nach der Saison einfach diesen Block loeschen.
+     =================================================================== -->
+<div class="saison">
+  <a href="weihnachten.html">
+    <b>Weihnachten 2026</b>
+    <span>Vier Menüs für Firmenfeier, Heiligabend und Feiertage – jetzt ansehen</span>
+    <span class="pfeil" aria-hidden="true">&rarr;</span>
+  </a>
+</div>
 
 <!-- ===================================================================
      NEON-LEISTE - Text hier anpassen
