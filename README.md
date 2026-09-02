@@ -8,17 +8,18 @@ Veröffentlicht über GitHub Pages.
 - `index.html` – die komplette Website. Bilder stecken als Daten-URI in der Datei,
   deshalb kommt die Seite ohne Bilderordner aus.
 - `fahrplan-familienfeier.pdf` – das Freebie „Der 4-Wochen-Fahrplan“, das Besucher
-  nach Eintragen ihrer E-Mail-Adresse per Antwortmail bekommen.
+  nach Eintragen ihrer E-Mail-Adresse herunterladen können.
+- `danke.html` – Danke-Seite mit dem Download für Besucher ohne JavaScript.
 
 ## Formulare
 
-Der Freebie-Abschnitt verschickt über [FormSubmit](https://formsubmit.co) an
-`service@alb-catering.de`. Die Adresse muss einmalig per Bestätigungsmail
-freigeschaltet werden.
+Der Freebie-Abschnitt läuft über [Web3Forms](https://web3forms.com).
+Der Zugangsschlüssel steht in `index.html` im Feld `access_key` und legt
+fest, an welche Adresse die Anmeldungen gehen.
 
-Im Feld `_autoresponse` steht der Download-Link zum Fahrplan. Er zeigt auf
-die veröffentlichte Seite und funktioniert bereits. Bei einer eigenen Domain
-dort die Adresse austauschen.
+Der Besucher bekommt den Fahrplan sofort auf der Seite zum Herunterladen,
+nicht per Mail — automatische Antwortmails sind bei Web3Forms kostenpflichtig.
+Besucher ohne JavaScript landen auf `danke.html`, wo derselbe Download steht.
 
 ## Adresse
 

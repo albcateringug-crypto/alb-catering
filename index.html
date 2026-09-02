@@ -887,13 +887,18 @@ details .body p:last-child{margin-bottom:0;}
 
 <!-- ===================================================================
      FREEBIE - E-MAIL EINTRAGEN, 4-WOCHEN-FAHRPLAN BEKOMMEN
-     Versand läuft über FormSubmit (formsubmit.co) - kostenlos, kein
-     eigener Server nötig. Die Einträge gehen an die Adresse, die im
-     action-Attribut steht.
+     Versand läuft über Web3Forms (web3forms.com) - kostenlos, kein
+     eigener Server nötig.
 
-     Im Feld "_autoresponse" steht der Download-Link zum Fahrplan. Er
-     zeigt auf die veröffentlichte Seite und funktioniert bereits.
-     Bei einer eigenen Domain später dort die Adresse austauschen.
+     NOCH EINZUTRAGEN: der Zugangsschlüssel im Feld "access_key".
+     Den bekommen Sie kostenlos auf web3forms.com, indem Sie dort Ihre
+     E-Mail-Adresse eintragen. An genau diese Adresse gehen später alle
+     Anmeldungen. Der Schlüssel ist kein Passwort - er steht bei jedem
+     Anbieter offen im Quelltext und darf hier sichtbar sein.
+
+     Der Besucher bekommt den Fahrplan sofort auf der Seite zum
+     Herunterladen. Es wird ihm bewusst KEINE Mail geschickt, denn
+     automatische Antwortmails kosten bei Web3Forms Geld.
      =================================================================== -->
 <section id="freebie">
   <div class="wrap narrow">
@@ -916,25 +921,18 @@ details .body p:last-child{margin-bottom:0;}
     </ul>
 
     <form class="form-card" id="freebieForm" method="POST"
-          action="https://formsubmit.co/service@alb-catering.de" novalidate>
+          action="https://api.web3forms.com/submit" novalidate>
 
-      <!-- Einstellungen für FormSubmit. Diese Felder sieht der Besucher nicht. -->
-      <input type="hidden" name="_subject" value="Neue Anmeldung: 4-Wochen-Fahrplan">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <!-- Automatische Antwort an den Besucher. HIER DIE DOMAIN EINTRAGEN. -->
-      <input type="hidden" name="_autoresponse"
-             value="Vielen Dank für Ihr Interesse. Hier ist Ihr 4-Wochen-Fahrplan für die stressfreie Feier: https://albcateringug-crypto.github.io/alb-catering/fahrplan-familienfeier.pdf -- Unser Tipp: Hängen Sie die Liste sichtbar an den Kühlschrank, dann verlieren Sie in keiner Woche den Überblick. Wenn Sie Preis und Termin klären möchten, rufen Sie uns einfach an: 07340 3239595. Herzliche Grüße, Ihr Team von ALB CATERING UG (haftungsbeschränkt), Bergstraße 54, 89177 Ballendorf">
-      <!-- Danke-Seite für Besucher ohne JavaScript. Erst eintragen, wenn die
-           Seite unter einer eigenen Adresse online ist:
-      <input type="hidden" name="_next" value="https://ihre-domain.de/danke.html">
-      -->
+      <!-- ZUGANGSSCHLÜSSEL VON WEB3FORMS - hier eintragen -->
+      <input type="hidden" name="access_key" value="[ZUGANGSSCHLUESSEL-HIER-EINSETZEN]">
+      <input type="hidden" name="subject" value="Neue Anmeldung: 4-Wochen-Fahrplan">
+      <input type="hidden" name="from_name" value="ALB CATERING Website">
+      <!-- Besucher ohne JavaScript landen auf der Danke-Seite mit dem Download -->
+      <input type="hidden" name="redirect"
+             value="https://albcateringug-crypto.github.io/alb-catering/danke.html">
 
-      <!-- Spam-Falle: bleibt für Menschen unsichtbar und leer -->
-      <div class="hp" aria-hidden="true">
-        <label for="_honey">Dieses Feld bitte leer lassen</label>
-        <input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off">
-      </div>
+      <!-- Spam-Falle von Web3Forms: für Menschen unsichtbar und leer -->
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
 
       <div class="field">
         <label for="freebieMail">Ihre E-Mail-Adresse
@@ -949,11 +947,17 @@ details .body p:last-child{margin-bottom:0;}
       <!-- Rückmeldung an den Besucher -->
       <p class="form-status" id="freebieStatus" role="status" aria-live="polite"></p>
 
+      <!-- Erscheint erst nach erfolgreichem Absenden -->
+      <p id="freebieDownload" hidden style="margin-top:16px;">
+        <a class="btn btn-block" href="fahrplan-familienfeier.pdf"
+           target="_blank" rel="noopener">Fahrplan jetzt öffnen</a>
+      </p>
+
       <p class="form-foot">
-        <b>Datenschutz:</b> Wir speichern ausschließlich Ihre E-Mail-Adresse und verwenden sie
-        nur, um Ihnen den Fahrplan zuzuschicken. Keine Weitergabe an Dritte, keine Werbung
-        ohne Ihre ausdrückliche Einwilligung. Sie können der Speicherung jederzeit
-        widersprechen – eine kurze Mail an
+        <b>Datenschutz:</b> Wir speichern ausschließlich Ihre E-Mail-Adresse, um zu wissen,
+        wer den Fahrplan angefordert hat, und um Ihnen bei Rückfragen zu antworten. Keine
+        Weitergabe an Dritte, keine Werbung ohne Ihre ausdrückliche Einwilligung. Sie können
+        der Speicherung jederzeit widersprechen – eine kurze Mail an
         <a href="mailto:service@alb-catering.de">service@alb-catering.de</a> genügt, dann
         löschen wir Ihre Adresse. Einzelheiten in unserer
         <a href="https://catering-ulm.com/policies/privacy-policy" target="_blank" rel="noopener">Datenschutzerklärung</a>.
@@ -1078,15 +1082,21 @@ form.addEventListener("submit", function (e) {
 });
 
 /* =====================================================================
-   FREEBIE-FORMULAR
-   Ohne JavaScript wird das Formular ganz normal an FormSubmit geschickt
-   und der Besucher landet auf deren Danke-Seite. Mit JavaScript bleibt
-   er auf der Seite und bekommt die Rückmeldung direkt unter dem Feld.
+   FREEBIE-FORMULAR (Web3Forms)
+   Ohne JavaScript wird das Formular normal abgeschickt und der Besucher
+   landet auf danke.html mit dem Download. Mit JavaScript bleibt er auf
+   der Seite und der Download-Knopf erscheint direkt unter dem Feld.
    ===================================================================== */
-var fForm   = document.getElementById("freebieForm");
-var fStatus = document.getElementById("freebieStatus");
-var fKnopf  = fForm.querySelector("button[type=submit]");
+var fForm     = document.getElementById("freebieForm");
+var fStatus   = document.getElementById("freebieStatus");
+var fDownload = document.getElementById("freebieDownload");
+var fKnopf    = fForm.querySelector("button[type=submit]");
 var FKNOPF_TEXT = fKnopf.textContent;
+
+function fMelden(text) {
+  fStatus.textContent = text;
+  fStatus.classList.add("on");
+}
 
 fForm.addEventListener("submit", function (e) {
   var wert = fForm.email.value.trim();
@@ -1094,8 +1104,7 @@ fForm.addEventListener("submit", function (e) {
   // Fehlervermeidung: erst prüfen, dann senden
   if (wert.indexOf("@") < 1 || wert.indexOf(".") < 3) {
     e.preventDefault();
-    fStatus.textContent = "Bitte tragen Sie eine vollständige E-Mail-Adresse ein, z. B. name@beispiel.de.";
-    fStatus.classList.add("on");
+    fMelden("Bitte tragen Sie eine vollständige E-Mail-Adresse ein, z. B. name@beispiel.de.");
     fForm.email.focus();
     return;
   }
@@ -1106,33 +1115,38 @@ fForm.addEventListener("submit", function (e) {
   e.preventDefault();
   fKnopf.disabled = true;
   fKnopf.textContent = "Wird gesendet …";
-  fStatus.textContent = "Einen Moment bitte …";
-  fStatus.classList.add("on");
+  fMelden("Einen Moment bitte …");
 
-  fetch(fForm.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+  var daten = {};
+  new FormData(fForm).forEach(function (wert, name) { daten[name] = wert; });
+
+  fetch(fForm.action, {
     method: "POST",
-    headers: { "Accept": "application/json" },
-    body: new FormData(fForm)
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(daten)
   })
-  .then(function (antwort) { return antwort.json(); })
-  .then(function (daten) {
-    if (daten.success === true || daten.success === "true") {
-      fForm.reset();
-      fKnopf.textContent = "Gesendet";
-      fStatus.textContent = "Geschafft. Der Fahrplan ist unterwegs in Ihr Postfach. "
-        + "Kommt nichts an? Bitte kurz im Spam-Ordner nachsehen.";
-    } else {
-      // Klartext-Meldung von FormSubmit in die Browser-Konsole schreiben.
-      // Häufigster Fall: Die Empfängeradresse ist noch nicht freigeschaltet.
-      throw new Error(daten && daten.message ? daten.message : "abgelehnt");
+  .then(function (antwort) {
+    return antwort.json().then(function (inhalt) {
+      return { ok: antwort.ok, inhalt: inhalt };
+    });
+  })
+  .then(function (e) {
+    if (!e.ok || e.inhalt.success === false) {
+      throw new Error(e.inhalt && e.inhalt.message ? e.inhalt.message : "abgelehnt");
     }
+    fForm.email.disabled = true;
+    fKnopf.hidden = true;
+    fDownload.hidden = false;
+    fMelden("Geschafft. Ihr Fahrplan steht unten zum Öffnen bereit.");
   })
   .catch(function (fehler) {
+    // Klartext-Meldung des Dienstes in die Browser-Konsole schreiben.
+    // Häufigster Fall: der Zugangsschlüssel fehlt oder stimmt nicht.
     if (window.console) { console.warn("Freebie-Formular:", fehler.message); }
     fKnopf.disabled = false;
     fKnopf.textContent = FKNOPF_TEXT;
-    fStatus.textContent = "Das hat gerade nicht geklappt. Schreiben Sie uns kurz an "
-      + "service@alb-catering.de – wir schicken Ihnen den Fahrplan von Hand.";
+    fMelden("Das hat gerade nicht geklappt. Schreiben Sie uns kurz an "
+      + "service@alb-catering.de – wir schicken Ihnen den Fahrplan von Hand.");
   });
 });
 
